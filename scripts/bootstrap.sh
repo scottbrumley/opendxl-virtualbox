@@ -22,7 +22,7 @@ installGit(){
 installPip(){
     ### Install Pip
     echo "Installing Pip"
-    sudo apt-get install -y python-pip
+    sudo apt-get install -y --upgrade python-pip
 }
 
 installCommonPython(){
@@ -71,6 +71,13 @@ setupLogin(){
     sudo chmod +x /etc/profile.d/environment.sh
 }
 
+shrinkBox(){
+    sudo apt-get clean
+    sudo dd if=/dev/zero of=/EMPTY bs=1M
+    sudo rm -f /EMPTY
+    cat /dev/null > ~/.bash_history && history -c && exit
+}
+
 aptCleanUp
 installGit
 installPip
@@ -79,3 +86,4 @@ installOpenDXLCLient
 checkOpenSSL
 installDos2Unix
 setupLogin
+shrinkBox
