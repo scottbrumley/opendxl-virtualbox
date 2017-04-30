@@ -22,7 +22,8 @@ installGit(){
 installPip(){
     ### Install Pip
     echo "Installing Pip"
-    sudo apt-get install -y --upgrade python-pip
+    sudo apt-get install -y python-pip
+    sudo pip install --upgrade pip
 }
 
 installCommonPython(){
