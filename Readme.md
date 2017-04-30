@@ -1,5 +1,7 @@
 # Setup Development Environment
 
+This project builds a box for to put on Atlas for running virtual boxes with Vagrant.
+
 ## Prerequisites
 
 ### For Repo
