@@ -10,6 +10,9 @@ else
     ROOT_DIR="$(pwd)/"
 fi
 
+fixHostResolution(){
+    echo "127.0.0.1   ubuntu-xenial" | sudo tee -a /etc/hosts
+}
 aptCleanUp(){
     sudo apt-get -y autoremove
 }
@@ -79,6 +82,7 @@ shrinkBox(){
     cat /dev/null > ~/.bash_history && history -c && exit
 }
 
+fixHostResolution
 aptCleanUp
 installGit
 installPip
