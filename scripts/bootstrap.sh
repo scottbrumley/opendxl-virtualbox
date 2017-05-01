@@ -88,10 +88,10 @@ setupLogin(){
 
 shrinkBox(){
     sudo apt-get clean
-    sudo dd if=/dev/zero of=/EMPTY bs=1M
-    sudo rm -f /EMPTY
+    #sudo dd if=/dev/zero of=/EMPTY bs=1M
+    #sudo rm -f /EMPTY
     sudo cat /dev/null > ~/.bash_history && history -c
-    exit
+    #exit
 }
 
 installFlask(){
@@ -122,3 +122,5 @@ shrinkBox
 if [[ "${ROOT_DIR}" == "/vagrant/" ]]; then
     installDocker
 fi
+
+echo "Type exit and opendxl.box will be built."
