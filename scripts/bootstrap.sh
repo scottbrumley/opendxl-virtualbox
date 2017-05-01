@@ -88,8 +88,8 @@ setupLogin(){
 
 shrinkBox(){
     sudo apt-get clean
-    #sudo dd if=/dev/zero of=/EMPTY bs=1M
-    #sudo rm -f /EMPTY
+    sudo dd if=/dev/zero of=/EMPTY bs=1M
+    sudo rm -f /EMPTY
     sudo cat /dev/null > ~/.bash_history && history -c
 }
 
@@ -108,13 +108,13 @@ fixHostResolution
 aptCleanUp
 installGit
 installPip
+upgradePIP
 installCommonPython
 installFlask
 installOpenDXLCLient
 checkOpenSSL
 installDos2Unix
 setupLogin
-upgradePIP
 shrinkBox
 
 ## Only Install Docker if this is a vagrant VM
