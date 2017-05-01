@@ -10,6 +10,18 @@ else
     ROOT_DIR="$(pwd)/"
 fi
 
+installDocker(){
+    sudo apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual
+    sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    # Verify  sudo apt-key fingerprint 0EBFCD88
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+    sudo apt-get update
+    sudo apt-get install -y docker-ce
+    sudo gpasswd -a vagrant docker
+    sudo service docker restart
+}
+
 fixHostResolution(){
     echo "127.0.0.1   ubuntu-xenial" | sudo tee -a /etc/hosts
 }
@@ -83,13 +95,26 @@ shrinkBox(){
     exit
 }
 
+installFlask(){
+    ## Setup Flask
+    ## Use flask run --host=0.0.0.0 to start Flask
+    sudo pip install Flask
+    sudo echo "export FLASK_APP=${ROOT_DIR}examples/tie_rep_api.py" >> /etc/bash.bashrc
+}
+
 fixHostResolution
 aptCleanUp
 installGit
 installPip
 installCommonPython
+installFlask
 installOpenDXLCLient
 checkOpenSSL
 installDos2Unix
 setupLogin
 shrinkBox
+
+## Only Install Docker if this is a vagrant VM
+if [[ "${ROOT_DIR}" == "/vagrant/" ]]; then
+    installDocker
+fi
