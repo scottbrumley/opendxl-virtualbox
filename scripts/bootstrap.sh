@@ -115,11 +115,11 @@ installOpenDXLCLient
 checkOpenSSL
 installDos2Unix
 setupLogin
-shrinkBox
 
 ## Only Install Docker if this is a vagrant VM
 if [[ "${ROOT_DIR}" == "/vagrant/" ]]; then
     installDocker
 fi
 
+shrinkBox
 echo "Type exit and opendxl.box will be built."
