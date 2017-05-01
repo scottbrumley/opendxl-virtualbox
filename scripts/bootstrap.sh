@@ -38,7 +38,6 @@ installPip(){
     ### Install Pip
     echo "Installing Pip"
     sudo apt-get install -y python-pip
-    sudo pip install --upgrade pip
 }
 
 installCommonPython(){
@@ -102,6 +101,10 @@ installFlask(){
     sudo echo "export FLASK_APP=${ROOT_DIR}examples/tie_rep_api.py" >> /etc/bash.bashrc
 }
 
+upgradePIP(){
+    sudo pip install --upgrade pip
+}
+
 fixHostResolution
 aptCleanUp
 installGit
@@ -112,6 +115,7 @@ installOpenDXLCLient
 checkOpenSSL
 installDos2Unix
 setupLogin
+upgradePIP
 shrinkBox
 
 ## Only Install Docker if this is a vagrant VM
