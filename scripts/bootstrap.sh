@@ -27,6 +27,7 @@ fixHostResolution(){
 }
 aptCleanUp(){
     sudo apt-get -y autoremove
+    sudo apt-get update
 }
 
 installGit(){
@@ -88,8 +89,6 @@ setupLogin(){
 
 shrinkBox(){
     sudo apt-get clean
-    sudo dd if=/dev/zero of=/EMPTY bs=1M
-    sudo rm -f /EMPTY
     sudo cat /dev/null > ~/.bash_history && history -c
 }
 
@@ -104,6 +103,15 @@ upgradePIP(){
     sudo pip install --upgrade pip
 }
 
+fixVagrantSSHIssue(){
+mkdir -p ~/.ssh
+sudo wget https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub -O ~/.ssh/authorized_keys
+sudo chmod 700 ~/.ssh
+sudo chmod 600 ~/.ssh/authorized_keys
+sudo chown -R vagrant:vagrant ~/.ssh
+
+}
+
 fixHostResolution
 aptCleanUp
 installGit
@@ -115,6 +123,7 @@ installOpenDXLCLient
 checkOpenSSL
 installDos2Unix
 setupLogin
+fixVagrantSSHIssue
 
 ## Only Install Docker if this is a vagrant VM
 if [[ "${ROOT_DIR}" == "/vagrant/" ]]; then
@@ -122,4 +131,6 @@ if [[ "${ROOT_DIR}" == "/vagrant/" ]]; then
 fi
 
 shrinkBox
-echo "Type exit and opendxl.box will be built."
+echo "Run sudo dd if=/dev/zero of=/EMPTY bs=1M && sudo rm -f /EMPTY to shrink VM"
+echo "Type exit to leave VM.  Then ..."
+echo "Type vagrant package --output opendxl.box to build the box"
