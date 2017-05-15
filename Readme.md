@@ -16,6 +16,11 @@ This project builds a box for to put on Atlas for running virtual boxes with Vag
 4. Run installer for Virtualbox
 3. Download Git https://git-scm.com/downloads
 
+## For ESX Hosts Install Vagrant Plug-in
+```
+vagrant plugin install vagrant-vsphere
+```
+
 ## How to get this repo working
 
 1. git clone https://github.com/scottbrumley/opendxl-cookbook.git
