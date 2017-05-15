@@ -83,7 +83,7 @@ setEnvVariables(){
 
 setupLogin(){
     echo "#!/bin/bash" | sudo tee -a /etc/profile.d/environment.sh
-    echo "cd /vagrant" | sudo tee -a /etc/profile.d/environment.sh
+    echo "cd /${ROOT_DIR}" | sudo tee -a /etc/profile.d/environment.sh
     sudo chmod +x /etc/profile.d/environment.sh
 }
 
@@ -123,5 +123,5 @@ setupLogin
 
 shrinkBox
 #echo "Run sudo dd if=/dev/zero of=/EMPTY bs=1M && sudo rm -f /EMPTY to shrink VM"
-echo "Type exit to leave VM.  Then ..."
-echo "Type vagrant package --output opendxl.box to build the box"
+#echo "Type exit to leave VM.  Then ..."
+#echo "Type vagrant package --output opendxl.box to build the box"
