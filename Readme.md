@@ -21,6 +21,20 @@ This project builds a box for to put on Atlas for running virtual boxes with Vag
 vagrant plugin install vagrant-vsphere
 ```
 
+### Create scripts/env.sh
+```
+#!/bin/bash
+
+export VSPHERE_HOST = 'HOST NAME OF YOUR VSPHERE INSTANCE'
+export VSPHERE_COMPUTE_RESOURCE_NAME = 'YOUR COMPUTE RESOURCE'
+export VSPHERE_RESOURCE_POOL_NAME = 'YOUR RESOURCE POOL'
+export VSPHERE_TEMPLATE_NAME = '/PATH/TO/YOUR VM TEMPLATE'
+export VSPHERE_NAME = 'NEW VM NAME'
+export VSPHERE_USER = 'YOUR VMWARE USER'
+export VSPHERE_PASSWORD = 'YOUR VMWARE PASSWORD'
+```
+### Chmod +x scripts/env.sh
+
 ## How to get this repo working
 
 1. git clone https://github.com/scottbrumley/opendxl-cookbook.git
