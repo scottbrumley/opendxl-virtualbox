@@ -78,7 +78,7 @@ installDos2Unix(){
 }
 
 setEnvVariables(){
-    /vagrant/scripts/env.sh
+    /${ROOT_DIR}/scripts/env.sh
 }
 
 setupLogin(){
