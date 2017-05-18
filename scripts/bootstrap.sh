@@ -11,6 +11,7 @@ else
 fi
 
 installDocker(){
+    sudo apt-get remove -y docker-engine
     sudo apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual
     sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -114,6 +115,7 @@ installFlask
 installOpenDXLCLient
 checkOpenSSL
 installDos2Unix
+installDocker
 setupLogin
 
 ## Only Install Docker if this is a vagrant VM
