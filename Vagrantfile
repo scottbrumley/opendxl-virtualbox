@@ -4,5 +4,5 @@ Vagrant.configure(2) do |config|
 
   config.vm.synced_folder "./", "/vagrant"
 
-  config.vm.provision "shell", path: "scripts/bootstrap.sh"
+  config.vm.provision "shell", path: "scripts/vagrant.sh"
 end
