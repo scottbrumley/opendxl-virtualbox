@@ -2,6 +2,8 @@
 
 #set -e
 
+source scripts/vars.sh
+
 REQ_SSL_VER="1.0.1"
 
 if [[ -d "/vagrant" ]]; then
