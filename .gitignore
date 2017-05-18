@@ -115,3 +115,4 @@ scripts/env.sh
 python-slackclient
 opendxl-bootstrap-python
 opendxl.box
+/scripts/env.sh
