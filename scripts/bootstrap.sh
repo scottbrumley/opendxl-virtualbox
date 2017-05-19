@@ -2,8 +2,8 @@
 
 #set -e
 
-source scripts/vars.sh
-source scripts/common.sh
+source ./scripts/vars.sh
+source ./scripts/common.sh
 
 installSudo
 setRootDir

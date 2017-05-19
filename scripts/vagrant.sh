@@ -1,13 +1,14 @@
 #!/bin/bash
 
-source scripts/vars.sh
-source scripts/common.sh
+source /vagrant/scripts/vars.sh
+source /vagrant/scripts/common.sh
 
 fixHostResolution
 installDos2Unix
 installDocker
 setupLogin
-scripts/bootstrap.sh
+cd /vagrant
+/vagrant/scripts/bootstrap.sh
 
 ## Only Install Docker if this is a vagrant VM
 #if [[ "${ROOT_DIR}" == "/vagrant/" ]]; then
