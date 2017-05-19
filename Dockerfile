@@ -1,7 +1,8 @@
-FROM ubuntu:xenial-20170510
+FROM python:2.7-alpine
 
-RUN apt-get update
-RUN apt-get install -y git
+# Install OpenDXL Required Packages
+RUN pip install requests
+RUN pip install dxlclient
 
 ADD scripts/vars.sh scripts/vars.sh
 ADD scripts/common.sh scripts/common.sh
