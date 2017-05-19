@@ -3,53 +3,57 @@
 installSudo(){
     if ! [ -x "$(command -v sudo)" ]; then
         echo 'Error: sudo is not installed.' >&2
-        apt-get install sudo
+        SUDO=""
+        apt-get install -y sudo
+    else
+        SUDO="sudo "
     fi
+
 }
 installDocker(){
-    sudo apt-get remove -y docker-engine
-    sudo apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual
-    sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+    ${SUDO}apt-get remove -y docker-engine
+    ${SUDO}apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual
+    ${SUDO}apt-get install -y apt-transport-https ca-certificates curl software-properties-common
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     # Verify  sudo apt-key fingerprint 0EBFCD88
-    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-    sudo apt-get update
-    sudo apt-get install -y docker-ce
-    sudo gpasswd -a vagrant docker
-    sudo service docker restart
+    ${SUDO}add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+    ${SUDO}apt-get update
+    ${SUDO}apt-get install -y docker-ce
+    ${SUDO}gpasswd -a vagrant docker
+    ${SUDO}service docker restart
 }
 
 fixHostResolution(){
     echo "127.0.0.1   ubuntu-xenial" | sudo tee -a /etc/hosts
 }
 aptCleanUp(){
-    sudo apt-get -y autoremove
-    sudo apt-get update
+    ${SUDO}apt-get -y autoremove
+    ${SUDO}apt-get update
 }
 
 installGit(){
     ### Install Git
-    sudo apt-get install -y git
+    ${SUDO}apt-get install -y git
 }
 
 installPip(){
     ### Install Pip
     echo "Installing Pip"
-    sudo apt-get install -y python-pip
+    ${SUDO}apt-get install -y python-pip
 }
 
 installCommonPython(){
     ### Install Common
     echo "Install Common for Python"
-    sudo pip install common
+    ${SUDO}pip install common
 }
 installOpenDXLCLient(){
     ### Install Open DXL Client
     echo "Installing Open DXL Client"
     cd ${ROOT_DIR}
-    sudo git clone https://github.com/opendxl/opendxl-bootstrap-python.git
+    ${SUDO}git clone https://github.com/opendxl/opendxl-bootstrap-python.git
     cd ${ROOT_DIR}opendxl-bootstrap-python
-    sudo python setup.py install
+    ${SUDO}python setup.py install
 }
 
 checkOpenSSL(){
@@ -65,13 +69,13 @@ fi
 
 createDXLConfigDirs(){
     ### Create Directories
-    sudo mkdir -p ${ROOT_DIR}brokercerts
-    sudo mkdir -p ${ROOT_DIR}certs
-    sudo touch ${ROOT_DIR}dxlclient.config
+    ${SUDO}mkdir -p ${ROOT_DIR}brokercerts
+    ${SUDO}mkdir -p ${ROOT_DIR}certs
+    ${SUDO}touch ${ROOT_DIR}dxlclient.config
 }
 
 installDos2Unix(){
-    sudo apt-get install -y dos2unix
+    ${SUDO}apt-get install -y dos2unix
 }
 
 setEnvVariables(){
@@ -81,21 +85,21 @@ setEnvVariables(){
 setupLogin(){
     echo "#!/bin/bash" | sudo tee -a /etc/profile.d/environment.sh
     echo "cd /${ROOT_DIR}" | sudo tee -a /etc/profile.d/environment.sh
-    sudo chmod +x /etc/profile.d/environment.sh
+    ${SUDO}chmod +x /etc/profile.d/environment.sh
 }
 
 shrinkBox(){
-    sudo apt-get clean
-    sudo cat /dev/null > ~/.bash_history && history -c
+    ${SUDO}apt-get clean
+    ${SUDO}cat /dev/null > ~/.bash_history && history -c
 }
 
 installFlask(){
     ## Setup Flask
     ## Use flask run --host=0.0.0.0 to start Flask
-    sudo pip install Flask
-    sudo echo "export FLASK_APP=${ROOT_DIR}examples/tie_rep_api.py" >> /etc/bash.bashrc
+    ${SUDO}pip install Flask
+    ${SUDO}echo "export FLASK_APP=${ROOT_DIR}examples/tie_rep_api.py" >> /etc/bash.bashrc
 }
 
 upgradePIP(){
-    sudo pip install --upgrade pip
+    ${SUDO}pip install --upgrade pip
 }
