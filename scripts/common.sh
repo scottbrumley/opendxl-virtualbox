@@ -4,7 +4,7 @@ installSudo(){
     if ! [ -x "$(command -v sudo)" ]; then
         echo 'Error: sudo is not installed.' >&2
         SUDO=""
-        apt-get install -y sudo
+        #apt-get install -y sudo
     else
         SUDO="sudo "
     fi
